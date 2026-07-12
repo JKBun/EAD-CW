@@ -1,5 +1,5 @@
-# Hotel Management System (EAD Coursework)
-
+# Hotel Management System (EAD Coursework) (KADSE252F-034)
+# NOTE - In the DBConnectionjava File the port number has been set to 3307 due to an error from XXAMP
 Java Swing + MySQL + Ant, built for the Hospitality & Tourism enterprise app coursework.
 
 ## What's in this project
