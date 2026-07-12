@@ -1,0 +1,17 @@
+# Build output
+build/
+dist/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+
+# Do NOT ignore lib/ - the mysql-connector jar needs to be in the repo
+# so the grader can build without hunting for it separately.
