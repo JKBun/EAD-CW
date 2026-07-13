@@ -11,9 +11,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * Input UI - full CRUD screen for managing customers / guests.
- */
 public class CustomerManagementForm extends JFrame {
 
     private final CustomerDAO customerDAO = new CustomerDAO();
@@ -49,7 +46,6 @@ public class CustomerManagementForm extends JFrame {
         mainPanel.setBackground(UITheme.BACKGROUND);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
-        // ---- form panel (top) ----
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBackground(UITheme.CARD_BACKGROUND);
         formPanel.setBorder(UITheme.titledBorder("Customer Details"));
@@ -113,7 +109,6 @@ public class CustomerManagementForm extends JFrame {
 
         mainPanel.add(formPanel, BorderLayout.NORTH);
 
-        // ---- table (center) ----
         tableModel = new DefaultTableModel(
                 new Object[]{"ID", "First Name", "Last Name", "NIC/Passport", "Phone", "Email", "Address"}, 0) {
             @Override

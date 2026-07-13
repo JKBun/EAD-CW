@@ -1,8 +1,5 @@
 package hotelapp.model;
 
-/**
- * Model class representing a row in the "customers" table.
- */
 public class Customer {
 
     private int customerId;

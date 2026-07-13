@@ -4,19 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Singleton design pattern - ensures only ONE database connection
- * object is created and reused across the whole application.
- *
- * Update DB_URL / DB_USER / DB_PASSWORD to match your local MySQL setup.
- */
 public class DBConnection {
 
     private static final String DB_URL =
             //** NOTE-The port number has been changed do to errors on my ports.
             "jdbc:mysql://localhost:3307/hotel_management_system?useSSL=false&serverTimezone=UTC";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = ""; // <-- put your MySQL root password here
+    private static final String DB_PASSWORD = "";
 
     private static DBConnection instance;
     private Connection connection;

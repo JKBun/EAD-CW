@@ -6,10 +6,6 @@ import hotelapp.util.UITheme;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Dashboard - shown after a successful login.
- * Acts as the navigation hub to the other forms in the system.
- */
 public class DashboardForm extends JFrame {
 
     private final User currentUser;
@@ -73,7 +69,7 @@ public class DashboardForm extends JFrame {
 
     private JButton makeNavButton(String title, String subtitle) {
         String mainColor = UITheme.toHex(UITheme.TEXT_LIGHT);
-        String subColor = "#E0F0F0"; // pale teal, readable on the accent button background
+        String subColor = "#E0F0F0";
         JButton button = new JButton(
                 "<html><center><b><font color='" + mainColor + "'>" + title + "</font></b><br>"
                         + "<font size=2 color='" + subColor + "'>" + subtitle + "</font></center></html>");

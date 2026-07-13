@@ -7,10 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object (DAO pattern) for the customers table.
- * Provides full CRUD - Create, Read, Update, Delete.
- */
+
 public class CustomerDAO {
 
     public void addCustomer(Customer c) throws SQLException {

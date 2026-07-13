@@ -11,9 +11,6 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Input UI - full CRUD screen for managing rooms.
- */
 public class RoomManagementForm extends JFrame {
 
     private final RoomDAO roomDAO = new RoomDAO();
@@ -25,7 +22,7 @@ public class RoomManagementForm extends JFrame {
     private JTable roomTable;
     private DefaultTableModel tableModel;
 
-    private Integer selectedRoomId = null; // null = adding a new room, not-null = editing
+    private Integer selectedRoomId = null;
 
     public RoomManagementForm() {
         setTitle("Room Management");
@@ -44,7 +41,6 @@ public class RoomManagementForm extends JFrame {
         mainPanel.setBackground(UITheme.BACKGROUND);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
-        // ---- form panel (top) ----
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBackground(UITheme.CARD_BACKGROUND);
         formPanel.setBorder(UITheme.titledBorder("Room Details"));

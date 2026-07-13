@@ -17,10 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Reports screen - generates the JasperReports "Bookings Report", which
- * pulls data from three tables (bookings, customers, rooms) via BookingDAO.
- */
 public class ReportForm extends JFrame {
 
     private static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
@@ -72,7 +68,6 @@ public class ReportForm extends JFrame {
                 return;
             }
 
-            // Convert Booking objects into the flat Map rows the .jrxml expects
             List<Map<String, ?>> rows = new ArrayList<>();
             for (Booking b : bookings) {
                 Map<String, Object> row = new HashMap<>();

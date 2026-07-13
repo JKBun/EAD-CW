@@ -8,29 +8,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object (DAO pattern) for the bookings table.
- * createBooking() is the "major transaction" required by the coursework:
- * it inserts a booking row AND flips the room's status to OCCUPIED as a
- * single database transaction (both succeed, or both roll back).
- */
 public class BookingDAO {
 
-    /**
-     * Creates a new booking and marks the room as OCCUPIED.
-     * Uses a JDBC transaction so the two updates succeed or fail together.
-     *
-     * @throws RoomNotAvailableException if the room is no longer available
-     *                                    by the time this runs (e.g. someone
-     *                                    else just booked it)
-     */
     public void createBooking(Booking booking) throws SQLException, RoomNotAvailableException {
         Connection conn = DBConnection.getInstance().getConnection();
 
         try {
             conn.setAutoCommit(false);
 
-            // 1. re-check the room is still available (avoids double-booking)
             String checkSql = "SELECT status FROM rooms WHERE room_id = ? FOR UPDATE";
             try (PreparedStatement checkPs = conn.prepareStatement(checkSql)) {
                 checkPs.setInt(1, booking.getRoomId());
@@ -43,7 +28,6 @@ public class BookingDAO {
                 }
             }
 
-            // 2. insert the booking
             String insertSql = "INSERT INTO bookings (customer_id, room_id, user_id, check_in_date, "
                     + "check_out_date, total_amount, status) VALUES (?, ?, ?, ?, ?, ?, 'CONFIRMED')";
             try (PreparedStatement insertPs = conn.prepareStatement(insertSql)) {
@@ -56,7 +40,6 @@ public class BookingDAO {
                 insertPs.executeUpdate();
             }
 
-            // 3. flip the room to OCCUPIED
             String updateRoomSql = "UPDATE rooms SET status = 'OCCUPIED' WHERE room_id = ?";
             try (PreparedStatement updatePs = conn.prepareStatement(updateRoomSql)) {
                 updatePs.setInt(1, booking.getRoomId());
@@ -72,7 +55,6 @@ public class BookingDAO {
         }
     }
 
-    /** All bookings, joined with customer name and room number for display. */
     public List<Booking> getAllBookings() throws SQLException {
         List<Booking> bookings = new ArrayList<>();
         String sql = "SELECT b.*, CONCAT(c.first_name, ' ', c.last_name) AS customer_name, r.room_number "
@@ -102,7 +84,6 @@ public class BookingDAO {
         return bookings;
     }
 
-    /** Marks a booking as CHECKED_OUT and frees up the room again. */
     public void checkOutBooking(int bookingId, int roomId) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
         try {

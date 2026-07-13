@@ -20,11 +20,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Transaction UI - the main functionality of the system.
- * Creates a booking that links a Customer + a Room + the logged-in staff User,
- * calculates the total automatically, and updates the room's availability.
- */
+
 public class BookingForm extends JFrame {
 
     private final BookingDAO bookingDAO = new BookingDAO();
@@ -60,7 +56,6 @@ public class BookingForm extends JFrame {
         mainPanel.setBackground(UITheme.BACKGROUND);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
-        // ---- form panel (top) ----
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBackground(UITheme.CARD_BACKGROUND);
         formPanel.setBorder(UITheme.titledBorder("Create Booking"));
@@ -125,7 +120,6 @@ public class BookingForm extends JFrame {
 
         mainPanel.add(formPanel, BorderLayout.NORTH);
 
-        // ---- bookings table (center) ----
         tableModel = new DefaultTableModel(
                 new Object[]{"ID", "Customer", "Room", "Check-in", "Check-out", "Total", "Status"}, 0) {
             @Override
@@ -249,7 +243,7 @@ public class BookingForm extends JFrame {
                     "Booking confirmed for " + selectedCustomer.getFullName()
                             + " in room " + selectedRoom.getRoomNumber() + ".\nTotal: Rs. " + total,
                     "Booking Confirmed", JOptionPane.INFORMATION_MESSAGE);
-            loadCustomersAndRooms(); // the booked room drops out of the available list
+            loadCustomersAndRooms();
             loadBookings();
         } catch (RoomNotAvailableException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Room Not Available", JOptionPane.WARNING_MESSAGE);
@@ -280,7 +274,6 @@ public class BookingForm extends JFrame {
         if (confirm != JOptionPane.YES_OPTION) return;
 
         try {
-            // find the room_id behind this room number to free it up
             Room matchingRoom = null;
             for (Room r : roomDAO.getAllRooms()) {
                 if (r.getRoomNumber().equals(roomNumber)) {

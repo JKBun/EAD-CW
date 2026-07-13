@@ -3,11 +3,6 @@ package hotelapp.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * Model class representing a row in the "bookings" table.
- * This is the central transaction record - links a Customer, a Room, and the
- * staff User who created the booking.
- */
 public class Booking {
 
     private int bookingId;
@@ -19,7 +14,6 @@ public class Booking {
     private BigDecimal totalAmount;
     private String status;
 
-    // extra display-only fields (filled in when joining with customers/rooms)
     private String customerName;
     private String roomNumber;
 

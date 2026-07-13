@@ -8,10 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object (DAO pattern) for the rooms table.
- * Provides full CRUD - Create, Read, Update, Delete.
- */
 public class RoomDAO {
 
     public void addRoom(Room room) throws SQLException {
@@ -61,7 +57,6 @@ public class RoomDAO {
         return rooms;
     }
 
-    /** Only rooms currently free - used later by the Booking form. */
     public List<Room> getAvailableRooms() throws SQLException {
         List<Room> rooms = new ArrayList<>();
         String sql = "SELECT * FROM rooms WHERE status = 'AVAILABLE' ORDER BY room_number";

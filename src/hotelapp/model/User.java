@@ -1,8 +1,5 @@
 package hotelapp.model;
 
-/**
- * Model class (MVC) representing a row in the "users" table.
- */
 public class User {
 
     private int userId;

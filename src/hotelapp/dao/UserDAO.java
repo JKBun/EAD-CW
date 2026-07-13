@@ -9,19 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Data Access Object (DAO design pattern) for the users table.
- * Keeps ALL SQL for "users" in one place, separate from the UI (MVC).
- */
 public class UserDAO {
 
-    /**
-     * Validates the given credentials against the database.
-     *
-     * @return the matching User if credentials are correct
-     * @throws InvalidLoginException if username/password do not match
-     * @throws SQLException          if a database error occurs
-     */
     public User validateLogin(String username, String password)
             throws InvalidLoginException, SQLException {
 

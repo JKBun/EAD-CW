@@ -2,9 +2,6 @@ package hotelapp.model;
 
 import java.math.BigDecimal;
 
-/**
- * Model class representing a row in the "rooms" table.
- */
 public class Room {
 
     private int roomId;

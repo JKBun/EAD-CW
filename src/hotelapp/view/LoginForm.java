@@ -10,11 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 
-/**
- * Login form - the entry point of the application.
- * On successful login, opens the DashboardForm and passes the
- * logged-in User object to it (so the dashboard knows the role/name).
- */
 public class LoginForm extends JFrame {
 
     private JTextField usernameField;
@@ -103,15 +98,12 @@ public class LoginForm extends JFrame {
         loginButton.addActionListener(this::handleLogin);
         exitButton.addActionListener((ActionEvent e) -> System.exit(0));
 
-        // allow pressing Enter in the password field to submit
         passwordField.addActionListener(this::handleLogin);
     }
-
     private void handleLogin(ActionEvent e) {
         String username = usernameField.getText().trim();
         String password = new String(passwordField.getPassword());
 
-        // basic input validation before hitting the database
         if (username.isEmpty() || password.isEmpty()) {
             statusLabel.setText("Username and password are required.");
             return;
@@ -125,7 +117,6 @@ public class LoginForm extends JFrame {
                     "Login Successful",
                     JOptionPane.INFORMATION_MESSAGE);
 
-            // open the dashboard and close the login window
             new DashboardForm(loggedInUser).setVisible(true);
             this.dispose();
 
